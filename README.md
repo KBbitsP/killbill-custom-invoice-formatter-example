@@ -36,7 +36,7 @@ org.killbill.osgi.system.bundle.export.packages.extra=org.killbill.billing.invoi
 1. Build and install the plugin
 2. Add the configuration properties mentioned above
 3. Start Kill Bill
-4. [Upload](https://killbill.github.io/slate/invoice.html#upload-the-invoice-template-for-the-tenant) the [Sample HTMLTemplate](https://github.com/killbill/killbill-custom-invoice-formatter-example/blob/main/SampleHTMLTemplate.mustache)
+4. [Upload](https://killbill.github.io/slate/invoice.html#upload-the-invoice-template-for-the-tenant) the [Sample HTMLTemplate](https://github.com/killbill/killbill-custom-invoice-formatter/blob/main/SampleHTMLTemplate.mustache)
 5. Invoke the [Render an invoice as HTML](https://killbill.github.io/slate/invoice.html#render-an-invoice-as-html) API endpoint for an existing invoice
 6. Verify that the text "Here is your new invoice!" is displayed at the top and that the invoice item end date is one less that the actual date (This is explained below)
 
@@ -48,8 +48,8 @@ Some pointers are as below.
 
 To add a new field:
 
-1. Define the field as well as a getter method corresponding to the field in either the `CustomInvoiceFormatter`/`CustomInvoiceItemFormatter` class. For example, the `CustomInvoiceFormatter` class defines a field called `greeting` and its getter method.
-2. Ensure that you use an invoice template that has this field defined similar to the [Sample HTMLTemplate](https://github.com/killbill/killbill-custom-invoice-formatter-example/blob/main/SampleHTMLTemplate.mustache)
+1. Define the field as well as a getter method corresponding to the field in either the `CustomInvoiceFormatter`/`CustomInvoiceItemFormatter` class. For example, the `CustomInvoiceFormatter` class defines a field called [greeting](https://github.com/killbill/killbill-custom-invoice-formatter/blob/c20b83e7f7389cffb2b87e1b2ee35d1415616b75/src/main/java/org/killbill/billing/plugin/custominvoiceformatter/CustomInvoiceFormatter.java#L28) and its [getter method](https://github.com/killbill/killbill-custom-invoice-formatter/blob/c20b83e7f7389cffb2b87e1b2ee35d1415616b75/src/main/java/org/killbill/billing/plugin/custominvoiceformatter/CustomInvoiceFormatter.java#L47).
+2. Ensure that you use an invoice template that has this field defined similar to the [Sample HTMLTemplate](https://github.com/killbill/killbill-custom-invoice-formatter/blob/main/SampleHTMLTemplate.mustache)
 
 To add custom logic corresponding to an existing field:
 
