@@ -1,6 +1,5 @@
 package org.killbill.billing.plugin.custominvoiceformatter;
 
-import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.killbill.billing.currency.api.CurrencyConversionApi;
@@ -26,6 +25,8 @@ public class CustomInvoiceFormatter extends DefaultInvoiceFormatter {
     private final ResourceBundle bundle;
     private final ResourceBundle defaultBundle;
 
+    private final String greeting;
+
 
     public CustomInvoiceFormatter(final String defaultLocale,
                                   final String catalogBundlePath, final Invoice invoice, final Locale locale,
@@ -39,19 +40,18 @@ public class CustomInvoiceFormatter extends DefaultInvoiceFormatter {
         this.bundle = bundle;
         this.defaultBundle = defaultBundle;
         this.dateFormatter = DateTimeFormat.mediumDate().withLocale(locale);
+        this.greeting = "Here is your new invoice!";
     }
 
-    @Override
-    public LocalDate getTargetDate() {
-        return invoice.getTargetDate().minusDays(1);
+
+    public String getGreeting() {
+        return this.greeting;
     }
 
     @Override
     public List<InvoiceItem> getInvoiceItems() {
         final List<InvoiceItem> formatters = new ArrayList<InvoiceItem>();
-        // final List<InvoiceItem> invoiceItems = invoice.getInvoiceItems();
-        final List<InvoiceItem> invoiceItems = super.mergeCBAAndCreditAdjustmentItems();
-        for (final InvoiceItem item : invoiceItems) {
+        for (final InvoiceItem item : super.mergeCBAAndCreditAdjustmentItems()) {
             formatters.add(new CustomInvoiceItemFormatter(defaultLocale, catalogBundlePath, item, dateFormatter, locale, bundle, defaultBundle));
         }
         return formatters;
