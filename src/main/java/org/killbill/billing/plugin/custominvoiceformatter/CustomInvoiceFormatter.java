@@ -31,7 +31,7 @@ public class CustomInvoiceFormatter extends DefaultInvoiceFormatter {
     public CustomInvoiceFormatter(final String defaultLocale,
                                   final String catalogBundlePath, final Invoice invoice, final Locale locale,
                                   final CurrencyConversionApi currencyConversionApi, final ResourceBundle bundle,
-                                  final ResourceBundle defaultBundle) {
+                                  final ResourceBundle defaultBundle, final TenantContext context) {
         super(defaultLocale, catalogBundlePath, invoice, locale, currencyConversionApi, bundle, defaultBundle);
         this.defaultLocale = defaultLocale;
         this.catalogBundlePath = catalogBundlePath;
